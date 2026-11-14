@@ -16,10 +16,9 @@
 ---
 
 > [!IMPORTANT]
-> ### ⚠️ Educational Use Disclaimer & Caveat
-> The dataset utilized throughout this repository ([`us_education_system_dataset.csv`](us_education_system_dataset.csv)) is synthetically modeled and curated **strictly for educational, instructional, and statistical learning purposes**.
-> 
-> It is **NOT** an authentic reflection, official census data, or governmental report of the real-world United States Educational System, specific school districts, or actual operating institutions. All analyses, findings, and simulated policy recommendations serve purely to demonstrate data science, machine learning visualization, visual diagnostics, and business translation workflows.
+> ### ⚠️ Educational Use Disclaimer & Dataset Scope
+> - **U.S. Education System Dataset ([`us_education_system_dataset.csv`](us_education_system_dataset.csv)):** Synthetically modeled and curated **strictly for educational, instructional, and statistical learning purposes**. It is **NOT** an authentic reflection, official census record, or governmental report of the real-world United States Educational System, specific school districts, or actual operating institutions. All analyses, findings, and simulated policy recommendations serve purely to demonstrate data science, machine learning visualization, visual diagnostics, and business translation workflows.
+> - **NOAA Meteorological Dataset ([`nooa -1.csv`](nooa%20-1.csv)):** Curated daily weather-station observations (`2025` Global Summary of the Day schema) staged in this repository for real-world sensor missingness auditing (`999.9` / `9999.9` sentinels), feature engineering, regression, and extreme-weather classification workflows.
 
 ---
 
@@ -49,14 +48,16 @@ Third-Semester-Baraka-2026---Data-Science/
 ├── Feature and Target.jpeg                                                          # Scikit-Learn tabular data representation: Features Matrix (X) & Target (y)
 ├── First Live Session Introduction to Visualization for ML.ipynb                    # Live Session 1 (Part 1): Univariate & Multivariate EDA
 ├── First Live Session Introduction to Visualization for ML - Continuation.ipynb       # Live Session 1 (Part 2): Correlation, Random Forest & PCA
+├── nooa -1.csv                                                                      # Staged NOAA GSOD meteorological dataset (1,000 daily records × 33 features)
 ├── README.md                                                                        # Comprehensive portfolio documentation
 ├── requirements.txt                                                                 # Reproducible Python dependencies
 ├── Resource Allocation.png                                                          # Exported Resource Allocation & Title I Audit visual artifact
 ├── Second Live Session - Business Value of Data Visualization for ML.ipynb          # Live Session 2 (Part 1): Phase 1 Resource Allocation & $50M Policy Audit
 ├── Second Live Session - Business Value of Data Visualization for ML Cont.ipynb     # Live Session 2 (Part 2): Business Levers & Collinearity Elimination
-├── Third Session - Introduction to ML.ipynb                                         # Live Session 3: ML Evolution, Model Taxonomy, Estimator API & Preprocessing
+├── Third Session - Introduction to ML.ipynb                                         # Live Session 3 (Part 1): ML Evolution, Taxonomy, Estimator API & Setup
+├── Third Session Introductionn to ML Cont.ipynb                                     # Live Session 3 (Part 2): Imputation, OHE, Linear Regression & Random Forest
 ├── us_education_system_data_dictionary.md                                           # 35-variable metadata schema & documentation
-└── us_education_system_dataset.csv                                                  # Modeled dataset (5,000 records × 35 features)
+└── us_education_system_dataset.csv                                                  # Modeled institutional dataset (5,000 records × 35 features)
 ```
 
 ---
@@ -69,16 +70,20 @@ Third-Semester-Baraka-2026---Data-Science/
 | **Live Session 01 (Part 2)** | **ML Visualization Continuation: Diagnostics & Dimensionality Reduction** | Correlation Matrix ([`corr_matrix.png`](./corr_matrix.png)), Random Forest Classifier ([`Confusion Matrix.png`](./Confusion%20Matrix.png)), & 2D PCA Embeddings ([`2D PCA Projection.png`](./2D%20PCA%20Projection.png)) ([`First Live Session Introduction to Visualization for ML - Continuation.ipynb`](First%20Live%20Session%20Introduction%20to%20Visualization%20for%20ML%20-%20Continuation.ipynb)) | ✅ Completed |
 | **Live Session 02 (Part 1)** | **Business Value of Data Visualization for ML: Phase 1 Audit** | Advising State Dept of Ed on $50M Math Intervention; Spending Distribution Skew & Title I Boxplot Audit ([`Resource Allocation.png`](./Resource%20Allocation.png), [`Second Live Session - Business Value of Data Visualization for ML.ipynb`](Second%20Live%20Session%20-%20Business%20Value%20of%20Data%20Visualization%20for%20ML.ipynb)) | ✅ Completed |
 | **Live Session 02 (Part 2)** | **Business Lever Discovery, Collinearity Audit & Policy Stratification** | 4D Business Lever Bubble Charts by Governance ([`Business Lever Analysis.png`](./Business%20Lever%20Analysis.png)) and Title I Tier ([`Business Lever Analysis - Title Staus.png`](./Business%20Lever%20Analysis%20-%20Title%20Staus.png)), & Primary Performance Driver Matrix ([`corr_matrix_features.png`](./corr_matrix_features.png)) ([`Second Live Session - Business Value of Data Visualization for ML Cont.ipynb`](Second%20Live%20Session%20-%20Business%20Value%20of%20Data%20Visualization%20for%20ML%20Cont.ipynb)) | ✅ Completed |
-| **Live Session 03** | **Introduction to Machine Learning & The Scikit-Learn Estimator API** | Paradigm shift from Symbolic AI to ML ([`Evolution of ML.jpeg`](./Evolution%20of%20ML.jpeg)), ML Taxonomy ([`Categories of ML Models.jpeg`](./Categories%20of%20ML%20Models.jpeg)), $X$/$y$ Representation ([`Feature and Target.jpeg`](./Feature%20and%20Target.jpeg)), 5-Step Estimator API & Feature Processing ([`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb)) | ✅ Completed |
-| **Module 03** *(Upcoming)* | **Supervised Learning: Regression** | Predictive modeling for continuous academic outcomes (`math_proficiency_pct`, `graduation_rate_pct`) | ⏳ Scheduled |
-| **Module 04** *(Upcoming)* | **Supervised Learning: Classification** | Classification algorithms (Logistic Regression, Tree Ensembles, SVMs) for school risk tiers | ⏳ Scheduled |
+| **Live Session 03 (Part 1)** | **Introduction to Machine Learning & The Scikit-Learn Estimator API** | Paradigm shift from Symbolic AI to ML ([`Evolution of ML.jpeg`](./Evolution%20of%20ML.jpeg)), ML Taxonomy ([`Categories of ML Models.jpeg`](./Categories%20of%20ML%20Models.jpeg)), $X$/$y$ Representation ([`Feature and Target.jpeg`](./Feature%20and%20Target.jpeg)), & Pipeline Target Hygiene ([`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb)) | ✅ Completed |
+| **Live Session 03 (Part 2)** | **Tabular Preprocessing, Linear Regression & Random Forest Walkthroughs** | Median Imputation (`SimpleImputer`), Dummy-Trap-Free Encoding (`OneHotEncoder(drop='first')`), `(5000, 10)` Matrix Assembly, Continuous `LinearRegression` (`MSE = 172.10`, `R² = 0.36`), & Ex-Ante `RandomForestClassifier` (`~70.0%` Accuracy) ([`Third Session Introductionn to ML Cont.ipynb`](Third%20Session%20Introductionn%20to%20ML%20Cont.ipynb)) | ✅ Completed |
+| **Data Asset Staging** | **NOAA GSOD Meteorological Station Dataset (2025)** | `1,000` daily station observations × `33` features across `205` stations (`2025-01-01` – `2025-08-23`) with sensor missingness sentinels (`999.9` / `9999.9`) staged for upcoming ML labs ([`nooa -1.csv`](nooa%20-1.csv)) | 📦 Staged |
+| **Module 03** *(Upcoming)* | **Supervised Learning: Advanced Regression & Regularization** | Ridge/Lasso regularization, non-linear regressors, residual diagnostics & meteorological/academic forecasting | ⏳ Scheduled |
+| **Module 04** *(Upcoming)* | **Supervised Learning: Classification** | Classification algorithms (Logistic Regression, Tree Ensembles, SVMs) for school risk tiers & weather events | ⏳ Scheduled |
 | **Module 05** *(Upcoming)* | **Model Evaluation & Diagnostics** | ROC-AUC, Precision-Recall, Calibration Curves, Bias vs. Variance tradeoff & Cost Curves | ⏳ Scheduled |
 
 ---
 
-## 🔬 Activity Spotlight: Live Session 03 — Introduction to Machine Learning & The Scikit-Learn Estimator API
+## 🔬 Activity Spotlight: Live Session 03 — Introduction to Machine Learning, Preprocessing & Supervised Modeling
 
-*Notebook:* [`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb)  
+*Notebooks:*  
+- **Part 1:** [`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb) *(Paradigm Shift, Model Taxonomy, Estimator API & Pipeline Setup)*  
+- **Part 2 (Continuation):** [`Third Session Introductionn to ML Cont.ipynb`](Third%20Session%20Introductionn%20to%20ML%20Cont.ipynb) *(Median Imputation, One-Hot Encoding, Linear Regression & Random Forest Classification)*  
 *Visual Artifacts:* [`Evolution of ML.jpeg`](./Evolution%20of%20ML.jpeg) | [`Categories of ML Models.jpeg`](./Categories%20of%20ML%20Models.jpeg) | [`Feature and Target.jpeg`](./Feature%20and%20Target.jpeg)
 
 ### 1. Paradigm Shift: Traditional Software Engineering vs. Machine Learning
@@ -128,14 +133,45 @@ flowchart LR
 
 ---
 
-### 4. Real-World Case Study: Education Performance Prediction Pipeline Setup
-Applying this workflow to [`us_education_system_dataset.csv`](us_education_system_dataset.csv) (`5,000` institutions), the pipeline isolates high-signal predictors identified during our Phase 2 business lever audit and prepares them for Scikit-Learn transformers (`SimpleImputer` and `OneHotEncoder`):
+### 4. End-to-End Preprocessing & Dummy-Trap-Free Matrix Assembly (`X`, `y`)
+Applying this workflow across **Part 1** ([`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb)) and **Part 2** ([`Third Session Introductionn to ML Cont.ipynb`](Third%20Session%20Introductionn%20to%20ML%20Cont.ipynb)) on [`us_education_system_dataset.csv`](us_education_system_dataset.csv) (`5,000` institutions), the pipeline isolates strictly **ex-ante institutional and socioeconomic predictors** identified during our Phase 2 business lever audit and transforms them into an analysis-ready `(5000, 10)` Scikit-Learn matrix:
 
-| Pipeline Role | Variable Specification | Selected Columns | Preprocessing Strategy |
+```mermaid
+flowchart LR
+    Raw["Raw Institutional Data (5,000 × 35)"] --> Clean["Target Hygiene: dropna(subset=['math_proficiency_pct'])"]
+    Clean --> Num["SimpleImputer(strategy='median') -> X_numeric (5,000 × 3)"]
+    Clean --> Cat["OneHotEncoder(sparse_output=False, drop='first') -> X_encoded (5,000 × 7)"]
+    Num --> Stack["np.hstack([X_numeric, X_encoded]) -> Features Matrix X (5,000 × 10)"]
+    Cat --> Stack
+    Clean --> Target["Target Vector y (5,000,) | Binary Tier y_binary (5,000,)"]
+```
+
+| Pipeline Role | Variable Specification | Selected Columns | Scikit-Learn Transformation & Output Shape |
 | :--- | :--- | :--- | :--- |
-| **Numeric Predictors ($X_{\text{num}}$)** | `numeric_features` | `per_pupil_expenditure_usd`, `student_teacher_ratio`, `percent_free_reduced_lunch` | `SimpleImputer` (median/mean imputation) + scaling |
-| **Categorical Predictors ($X_{\text{cat}}$)** | `categorical_features` | `title_i_status`, `control` | `OneHotEncoder` (orthogonal binary indicator expansion) |
-| **Supervised Target ($y$)** | `target_col` | `math_proficiency_pct` | Target hygiene via `perf_data.dropna(subset=[target_col]).copy()` |
+| **Numeric Predictors ($X_{\text{num}}$)** | `numeric_features` | `per_pupil_expenditure_usd`, `student_teacher_ratio`, `percent_free_reduced_lunch` | `SimpleImputer(strategy='median')` $\rightarrow$ **`(5000, 3)`** (robust against right-skewed spending outliers) |
+| **Categorical Predictors ($X_{\text{cat}}$)** | `categorical_features` | `title_i_status` *(4 tiers)*, `control` *(5 governance types)* | `OneHotEncoder(sparse_output=False, drop='first')` $\rightarrow$ **`(5000, 7)`** (`3` Title I + `4` Governance dummies; eliminates the linear dummy-variable trap) |
+| **Unified Features Matrix ($X$)** | `np.hstack([X_numeric, X_encoded])` | 3 continuous + 7 orthogonal binary indicators | **`(5000, 10)`** 2D array (`n_samples, n_features`) |
+| **Supervised Targets ($y$ / $y_{\text{binary}}$)** | `target_col` | `math_proficiency_pct` *(median = `60.1%`, mean = `60.01%`)* | Continuous $y$ **`(5000,)`** for Regression; Discretized `(y >= np.median(y)).astype(int)` **`(5000,)`** for Classification |
+
+---
+
+### 5. Supervised Regression Walkthrough: Continuous `LinearRegression`
+To forecast exact institutional `math_proficiency_pct` (`12.0%` to `96.0%`), `X` and `y` were partitioned via an **80/20 train-test split** (`train_test_split(X, y, test_size=0.2, random_state=42)` $\rightarrow$ `4,000` training schools / `1,000` unseen test schools) and evaluated with ordinary least squares `LinearRegression()`:
+
+| Evaluation Metric | Out-of-Sample Score (`1,000` Test Schools) | Mathematical Definition | Executive & Statistical Interpretation |
+| :--- | :---: | :---: | :--- |
+| **Mean Squared Error ($MSE$)** | **`172.10`** *(RMSE $\approx$ **`13.12` pts**)* | $\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$ | Heavily penalizes large institutional misses; on average, continuous proficiency predictions deviate by **~13.12 percentage points** from observed test rates. |
+| **Coefficient of Determination ($R^2$)** | **`0.36`** *(**36.0%** variance)* | $1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$ | Baseline funding, staffing ratios, poverty concentration, governance, and Title I status explain **36%** of out-of-sample math variance—aligning closely with Session 2's bivariate poverty correlation ($R^2 \approx 38.4\%$) and confirming that ~64% of variance resides in school-level pedagogy, attendance, and student support execution. |
+
+---
+
+### 6. Supervised Classification Walkthrough: `RandomForestClassifier` & Leakage-Free Audit
+Converting continuous math proficiency into discrete policy tiers around the institutional median (`60.1%`: `0` = *Below Median*, `1` = *Above Median*), a **`RandomForestClassifier(n_estimators=100, random_state=42)`** was trained on the 80/20 split (`4,000` train / `1,000` test):
+
+- **Out-of-Sample Classification Accuracy:** **`~70.0%`** (`accuracy_score = 0.70` across `1,000` unseen institutions).
+- **Methodological Audit — Session 1 (`79.0%`) vs. Session 3 (`70.0%`):**
+  - In **Live Session 01 (Part 2)**, the diagnostic Random Forest achieved **`79.0%`** accuracy because its feature set included contemporaneous academic and behavioral co-outcomes (`reading_proficiency_pct` with $r = +0.77$ collinearity, `graduation_rate_pct`, and `chronic_absenteeism_pct`).
+  - In **Live Session 03 (Part 2)**, enforcing **strict ex-ante feature hygiene** (restricting $X$ solely to structural resource, staffing, socioeconomic, Title I, and governance variables known *before* standardized testing occurs) eliminates outcome leakage and establishes a realistic, deployable **~70.0% early-warning screening baseline**.
 
 ---
 
@@ -336,9 +372,10 @@ Using `StandardScaler` and **Principal Component Analysis (`PCA(n_components=2)`
 
 ---
 
-## 📊 Dataset & Schema Overview
+## 📊 Datasets & Schema Overview
 
-The primary dataset modeled in this repository encapsulates **5,000 educational institutions** across all 50 US states and Washington D.C., encompassing **35 analytical dimensions**.
+### 1. Modeled U.S. Education System Dataset ([`us_education_system_dataset.csv`](us_education_system_dataset.csv))
+The primary institutional dataset modeled across Live Sessions 01–03 encapsulates **5,000 educational institutions** across all 50 US states and Washington D.C., encompassing **35 analytical dimensions**.
 
 | Category | Representative Variables | Analytical Significance |
 | :--- | :--- | :--- |
@@ -350,6 +387,16 @@ The primary dataset modeled in this repository encapsulates **5,000 educational 
 
 > 📖 *For complete field descriptions, allowable ranges, and data types, refer to the full [Data Dictionary Documentation](us_education_system_data_dictionary.md).*
 
+### 2. NOAA Global Summary of the Day Meteorological Dataset ([`nooa -1.csv`](nooa%20-1.csv))
+Staged for upcoming environmental data hygiene, feature engineering, regression, and imbalanced event classification workflows, this dataset contains **1,000 daily weather-station records** across **205 reporting stations** (`2025-01-01` to `2025-08-23`), spanning **33 meteorological dimensions**.
+
+| Domain Category | Representative Variables | Analytical & Data-Hygiene Significance |
+| :--- | :--- | :--- |
+| **Station & Temporal Identifiers** | `stn`, `wban`, `date`, `year`, `mo`, `da` | Unique station identifiers (`205` stations) and daily observation timestamps |
+| **Thermodynamic & Barometric State** | `temp` (`-55.0°F` to `84.2°F`, mean `37.23°F`), `dewp`, `max`, `min`, `slp`, `stp` | Core continuous predictors/targets for temperature & atmospheric pressure regression |
+| **Wind, Visibility & Precipitation** | `visib`, `wdsp`, `mxpsd`, `gust`, `prcp`, `sndp` + `count_*` / `flag_*` | Boundary-layer dynamics, quality flags, and numeric missingness sentinels (`999.9` / `9999.9` / `99.99`) requiring sentinel-to-`NaN` preprocessing before imputation |
+| **Binary Weather Event Indicators** | `fog` (`18`), `rain_drizzle` (`80`), `snow_ice_pellets` (`82`), `thunder` (`10`), `hail` (`0`), `tornado_funnel_cloud` (`0`) | Imbalanced binary target flags ideal for precision-recall diagnostics and rare-event classification |
+
 ---
 
 ## 🛠️ Tech Stack & Environment
@@ -357,7 +404,7 @@ The primary dataset modeled in this repository encapsulates **5,000 educational 
 - **Core Language:** Python 3.10+
 - **Environment:** Jupyter Notebook / Google Colab / VS Code
 - **Data Manipulation:** `pandas`, `numpy`, `scipy`
-- **Machine Learning & Dimensionality Reduction:** `scikit-learn` (`RandomForestClassifier`, `PCA`, `StandardScaler`, `OneHotEncoder`, `SimpleImputer`, `confusion_matrix`)
+- **Machine Learning & Dimensionality Reduction:** `scikit-learn` (`LinearRegression`, `RandomForestClassifier`, `PCA`, `StandardScaler`, `OneHotEncoder`, `SimpleImputer`, `train_test_split`, `mean_squared_error`, `r2_score`, `accuracy_score`, `classification_report`, `confusion_matrix`)
 - **Statistical Visualization:** `matplotlib`, `seaborn`
 - **Version Control:** Git & GitHub
 
@@ -398,7 +445,8 @@ Open any of the interactive notebooks to explore the workflows:
 - [`First Live Session Introduction to Visualization for ML - Continuation.ipynb`](First%20Live%20Session%20Introduction%20to%20Visualization%20for%20ML%20-%20Continuation.ipynb) — *Live Session 1 (Part 2): Correlation Matrices, Random Forest Diagnostics & 2D PCA Projections*
 - [`Second Live Session - Business Value of Data Visualization for ML.ipynb`](Second%20Live%20Session%20-%20Business%20Value%20of%20Data%20Visualization%20for%20ML.ipynb) — *Live Session 2 (Part 1): Business-Valued ML Framework, Financial Audit & $50M Policy Intervention*
 - [`Second Live Session - Business Value of Data Visualization for ML Cont.ipynb`](Second%20Live%20Session%20-%20Business%20Value%20of%20Data%20Visualization%20for%20ML%20Cont.ipynb) — *Live Session 2 (Part 2): Business Lever Discovery (4D Scatterplots) & Eliminating Redundant Features (Collinearity Matrix)*
-- [`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb) — *Live Session 3: Evolution of ML, Model Taxonomy, 5-Step Scikit-Learn Estimator API & Feature Processing*
+- [`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb) — *Live Session 3 (Part 1): Evolution of ML, Model Taxonomy, 5-Step Scikit-Learn Estimator API & Pipeline Setup*
+- [`Third Session Introductionn to ML Cont.ipynb`](Third%20Session%20Introductionn%20to%20ML%20Cont.ipynb) — *Live Session 3 (Part 2): Median Imputation, One-Hot Encoding, Supervised Linear Regression & Random Forest Classification*
 
 ---
 
