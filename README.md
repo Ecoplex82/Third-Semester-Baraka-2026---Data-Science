@@ -36,12 +36,15 @@ A central philosophy developed in this portfolio is that **accuracy alone does n
 
 ```text
 Third-Semester-Baraka-2026---Data-Science/
+├── .github/
+│   └── pull_request_template.md                                                     # Automated PR checklist template for student submissions
 ├── .gitignore                                                                       # Clean Git ignore rules (OS, IDE, checkpoints)
 ├── 2D PCA Projection.png                                                            # Exported 2D PCA projection visual artifact
 ├── Business Lever Analysis - Title Staus.png                                        # Exported 4D Business Lever Bubble Plot (by Title I Status)
 ├── Business Lever Analysis.png                                                      # Exported 4D Business Lever Bubble Plot (by Governance Control)
 ├── Categories of ML Models.jpeg                                                     # Architectural taxonomy of Supervised vs. Unsupervised ML models
 ├── Confusion Matrix.png                                                             # Exported Random Forest Confusion Matrix heatmap
+├── CONTRIBUTING.md                                                                  # Student submission rules, Git CLI workflow & ML PR checklist
 ├── corr_matrix.png                                                                  # Exported 9-feature Correlation Matrix (Session 1: Attendance)
 ├── corr_matrix_features.png                                                         # Exported 9-feature Correlation Matrix (Session 2: Broadband & Drivers)
 ├── Evolution of ML.jpeg                                                             # Historical progression: Symbolic AI -> Statistical ML -> Python Ecosystem
@@ -447,6 +450,16 @@ Open any of the interactive notebooks to explore the workflows:
 - [`Second Live Session - Business Value of Data Visualization for ML Cont.ipynb`](Second%20Live%20Session%20-%20Business%20Value%20of%20Data%20Visualization%20for%20ML%20Cont.ipynb) — *Live Session 2 (Part 2): Business Lever Discovery (4D Scatterplots) & Eliminating Redundant Features (Collinearity Matrix)*
 - [`Third Session - Introduction to ML.ipynb`](Third%20Session%20-%20Introduction%20to%20ML.ipynb) — *Live Session 3 (Part 1): Evolution of ML, Model Taxonomy, 5-Step Scikit-Learn Estimator API & Pipeline Setup*
 - [`Third Session Introductionn to ML Cont.ipynb`](Third%20Session%20Introductionn%20to%20ML%20Cont.ipynb) — *Live Session 3 (Part 2): Median Imputation, One-Hot Encoding, Supervised Linear Regression & Random Forest Classification*
+
+---
+
+## 🤝 Student Submissions & Pull Request Guidelines
+
+Baraka 2026 Cohort students submitting session notebooks or practical extensions via Pull Request **must** follow our repository standards documented in **[`CONTRIBUTING.md`](CONTRIBUTING.md)**:
+
+- **Isolate All Files Under `submissions/<first-last>/`:** Keep your notebooks (`snake_case.ipynb`), `README.md`, and `images/` folder inside your own subdirectory—never add files to the repository root or modify shared root files (`requirements.txt`, `README.md`, or canonical datasets).
+- **Use Portable Relative Paths & Clean Execution:** Reference root datasets via `../../us_education_system_dataset.csv` (never `C:\Users\...` or `/Users/...`) and run **Restart Kernel & Run All Cells** before committing.
+- **Complete the Automated PR Checklist:** Every new Pull Request automatically loads [`.github/pull_request_template.md`](.github/pull_request_template.md)—verify all items on GitHub's *Files changed* tab before requesting review.
 
 ---
 
